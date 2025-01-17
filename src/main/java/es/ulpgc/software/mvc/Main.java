@@ -13,9 +13,8 @@ public class Main {
         FileImageLoader fileImageLoader = new FileImageLoader(new File(root));
         MainFrame mainFrame = new MainFrame();
         mainFrame.getImageDisplay().show(fileImageLoader.load());
-        mainFrame.addCommand(
-                "next", new NextImageCommand(mainFrame.getImageDisplay()))
-                .addCommand("prev", new PreviousImageCommand(mainFrame.getImageDisplay()));
+        mainFrame.addCommand("prev", new PreviousImageCommand(mainFrame.getImageDisplay()))
+                .addCommand("next", new NextImageCommand(mainFrame.getImageDisplay()));
         mainFrame.setVisible(true);
     }
 }
