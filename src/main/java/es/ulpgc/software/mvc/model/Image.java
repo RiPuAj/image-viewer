@@ -1,4 +1,4 @@
-package es.ulpgc.software.model;
+package es.ulpgc.software.mvc.model;
 
 public interface Image {
     Image previous();

@@ -1,6 +1,6 @@
-package es.ulpgc.software.io;
+package es.ulpgc.software.mvc.io;
 
-import es.ulpgc.software.model.Image;
+import es.ulpgc.software.mvc.model.Image;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -25,12 +25,12 @@ public class FileImageLoader implements ImageLoader {
         return new Image() {
 
             @Override
-            public Image previous() {
+            public es.ulpgc.software.mvc.model.Image previous() {
                 return imageAt((i - 1 + images.length) % images.length);
             }
 
             @Override
-            public Image next() {
+            public es.ulpgc.software.mvc.model.Image next() {
                 return imageAt((i + 1) % images.length);
             }
 
