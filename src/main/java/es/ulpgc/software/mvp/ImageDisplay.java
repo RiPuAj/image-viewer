@@ -1,7 +1,6 @@
 package es.ulpgc.software.mvp;
 
 
-import java.io.IOException;
 
 public interface ImageDisplay {
     void paint(String filename, int offset);

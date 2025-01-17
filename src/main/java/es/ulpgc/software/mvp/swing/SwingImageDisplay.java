@@ -18,7 +18,7 @@ public class SwingImageDisplay extends JPanel implements ImageDisplay {
     private int initShift;
     private Released released = Released.Null;
     private Shift shift = Shift.Null;
-    private List<Paint> paints = new ArrayList<>();
+    private final List<Paint> paints = new ArrayList<>();
 
     public SwingImageDisplay() {
         this.addMouseListener(mouseListener());

@@ -2,12 +2,11 @@ package es.ulpgc.software.mvp;
 
 import es.ulpgc.software.mvp.model.Image;
 
-import java.io.IOException;
 
 import static es.ulpgc.software.mvp.ImageDisplay.*;
 
 public class ImagePresenter {
-    private ImageDisplay display;
+    private final ImageDisplay display;
     private Image image;
 
     public ImagePresenter(ImageDisplay display) {
