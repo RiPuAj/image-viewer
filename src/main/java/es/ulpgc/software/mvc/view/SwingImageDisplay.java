@@ -8,14 +8,17 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SwingImageDisplay extends JPanel implements ImageDisplay {
     private Image currentImage;
     private BufferedImage imageBitMap;
+    private Map<String, Image> imagesCache = new HashMap<>();
 
     @Override
     public void show(Image image) {
-        this.currentImage = image;
+        this.currentImage = imagesCache.containsKey(image.path()) ? imagesCache.get(image.path()) : image;
         this.imageBitMap = readImageFrom(image.path());
         this.repaint();
     }

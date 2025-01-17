@@ -12,13 +12,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SwingImageDisplay extends JPanel implements ImageDisplay {
     private int initShift;
     private Released released = Released.Null;
     private Shift shift = Shift.Null;
     private final List<Paint> paints = new ArrayList<>();
+    private final Map<String, BufferedImage> imagesCache = new HashMap<>();
 
     public SwingImageDisplay() {
         this.addMouseListener(mouseListener());
@@ -29,7 +32,13 @@ public class SwingImageDisplay extends JPanel implements ImageDisplay {
     public void paint(String filename, int offset) {
         clear();
         try {
-            paints.add(new Paint(filename, offset, ImageIO.read(new File(filename))));
+            if(imagesCache.containsKey(filename)) {
+                paints.add(new Paint(filename, offset, imagesCache.get(filename)));
+            }else {
+                BufferedImage image = ImageIO.read(new File(filename));
+                imagesCache.put(filename, image);
+                paints.add(new Paint(filename, offset, image));
+            };
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
