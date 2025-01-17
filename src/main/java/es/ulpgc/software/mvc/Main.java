@@ -8,7 +8,7 @@ import es.ulpgc.software.mvc.view.MainFrame;
 import java.io.File;
 
 public class Main {
-    public static final String root = "C:\\Users\\javi_\\OneDrive\\Escritorio\\24-25\\IS2\\Finales\\image-viewer-JPR\\images";
+    public static final String root = "images";
     public static void main(String[] args) {
         FileImageLoader fileImageLoader = new FileImageLoader(new File(root));
         MainFrame mainFrame = new MainFrame();
