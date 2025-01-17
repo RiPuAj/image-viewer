@@ -3,18 +3,18 @@ package es.ulpgc.software.mvc.io;
 import es.ulpgc.software.mvc.model.Image;
 
 import java.io.File;
-import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.util.Set;
 
 public class FileImageLoader implements ImageLoader {
     private final File[] images;
-    private final Set<String> imageExtensions = Set.of(".jpg", ".jpeg", ".png");
-    private final FileFilter imageFilter = file -> imageExtensions.stream()
-            .anyMatch(ext -> file.getName().toLowerCase().endsWith(ext));
+    private static final Set<String> imageExtensions = Set.of(".jpg", ".jpeg", ".png");
+    private static FilenameFilter isImage() {return (dir, name) -> imageExtensions.stream().anyMatch(name::endsWith);}
 
     public FileImageLoader(File dir) {
-        this.images = dir.listFiles(imageFilter);
+        this.images = dir.listFiles(isImage());
     }
+
 
     @Override
     public Image load() {
@@ -25,12 +25,12 @@ public class FileImageLoader implements ImageLoader {
         return new Image() {
 
             @Override
-            public es.ulpgc.software.mvc.model.Image previous() {
+            public Image previous() {
                 return imageAt((i - 1 + images.length) % images.length);
             }
 
             @Override
-            public es.ulpgc.software.mvc.model.Image next() {
+            public Image next() {
                 return imageAt((i + 1) % images.length);
             }
 

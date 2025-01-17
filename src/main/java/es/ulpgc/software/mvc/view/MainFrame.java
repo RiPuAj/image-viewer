@@ -1,8 +1,6 @@
 package es.ulpgc.software.mvc.view;
 
 import es.ulpgc.software.mvc.controller.Command;
-import es.ulpgc.software.mvc.controller.commands.NextImageCommand;
-import es.ulpgc.software.mvc.controller.commands.PreviousImageCommand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,26 +17,25 @@ public class MainFrame extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
-        setLayout(new FlowLayout(FlowLayout.CENTER));
+        setLayout(new BorderLayout());
         add(createImageDisplay());
-        add(createToolBar());
+        add(createToolBar(), BorderLayout.SOUTH);
     }
 
     private Component createImageDisplay() {
-        es.ulpgc.software.mvc.view.ImageDisplay imageDisplay = new SwingImageDisplay();
+        SwingImageDisplay imageDisplay = new SwingImageDisplay();
         this.imageDisplay = imageDisplay;
-        return (Component) imageDisplay;
+        return imageDisplay;
     }
 
     private Component createPrevButton() {
-        JButton prevButton = new JButton("<-");
+        JButton prevButton = new JButton("Previous");
         prevButton.addActionListener(e -> commands.get("prev").execute());
         return prevButton;
     }
 
     private Component createNextButton() {
-        JButton nextButton = new JButton("->");
+        JButton nextButton = new JButton("Next");
         nextButton.addActionListener(e -> commands.get("next").execute());
         return nextButton;
     }

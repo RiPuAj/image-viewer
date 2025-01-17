@@ -8,13 +8,14 @@ import es.ulpgc.software.mvc.view.MainFrame;
 import java.io.File;
 
 public class Main {
+    public static final String root = "C:\\Users\\javi_\\OneDrive\\Escritorio\\24-25\\IS2\\Finales\\image-viewer-JPR\\images";
     public static void main(String[] args) {
-        FileImageLoader imagesDir = new FileImageLoader(new File("images"));
+        FileImageLoader fileImageLoader = new FileImageLoader(new File(root));
         MainFrame mainFrame = new MainFrame();
+        mainFrame.getImageDisplay().show(fileImageLoader.load());
         mainFrame.addCommand(
                 "next", new NextImageCommand(mainFrame.getImageDisplay()))
                 .addCommand("prev", new PreviousImageCommand(mainFrame.getImageDisplay()));
-        mainFrame.getImageDisplay().show(imagesDir.load());
         mainFrame.setVisible(true);
     }
 }

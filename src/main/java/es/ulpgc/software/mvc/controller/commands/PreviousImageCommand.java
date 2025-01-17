@@ -12,6 +12,7 @@ public class PreviousImageCommand implements Command {
 
     @Override
     public void execute() {
+
         display.show(display.getCurrentImage().previous());
     }
 }
